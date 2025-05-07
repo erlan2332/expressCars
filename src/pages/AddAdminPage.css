@@ -1,0 +1,58 @@
+.user-table {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.user-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.user-table th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+}
+
+.role-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.pagination span {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .add-admin-page {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .user-table table {
+    font-size: 14px;
+  }
+  
+  .role-select {
+    padding: 6px 10px;
+  }
+}
