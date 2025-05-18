@@ -96,11 +96,40 @@ function OrdersPage() {
     }
   };
 
+  // Новый универсальный копи-паст (работает везде)
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(orderCode)
-      .then(() => setCopied(true))
-      .catch(() => setError("Ошибка копирования"))
-      .finally(() => setTimeout(() => setCopied(false), 1500));
+    if (!orderCode) return;
+    // Если есть navigator.clipboard (работает на HTTPS и большинстве браузеров)
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(orderCode)
+        .then(() => setCopied(true))
+        .catch(() => {
+          fallbackCopy(orderCode);
+        })
+        .finally(() => setTimeout(() => setCopied(false), 1500));
+    } else {
+      // Fallback для старых браузеров или не HTTPS
+      fallbackCopy(orderCode);
+    }
+  };
+
+  // Fallback-метод для копирования текста
+  const fallbackCopy = (text) => {
+    try {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      setError("Ошибка копирования");
+    }
   };
 
   return (
@@ -129,20 +158,12 @@ function OrdersPage() {
           <div className="code-copy">
             <span>{orderCode}</span>
             <button onClick={copyToClipboard}>
-              {copied ? "✓ Скопировано" : "📋 Копировать"}
+              {copied ? "Скопировано" : "Копировать"}
             </button>
           </div>
 
           <div className="info-line">
             <strong>ID заказа:</strong> {orderId}
-          </div>
-
-          <h4>Изменить статус:</h4>
-          <div className="status-buttons">
-            <button onClick={() => updateOrderStatus("sklad")}>На складе</button>
-            <button onClick={() => updateOrderStatus("onway")}>В пути</button>
-            <button onClick={() => updateOrderStatus("comed")}>Прибыл</button>
-            <button onClick={() => updateOrderStatus("finished")}>Завершён</button>
           </div>
         </div>
       )}

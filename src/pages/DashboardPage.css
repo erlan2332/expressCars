@@ -7,7 +7,6 @@
   font-family: sans-serif;
 }
 
-
 .dashboard-title {
   font-size: 24px;
   font-weight: 700;
@@ -15,12 +14,10 @@
   margin-bottom: 20px;
 }
 
-
 .dashboard-error {
   color: red;
   margin-bottom: 16px;
 }
-
 
 .section-title {
   font-size: 18px;
@@ -29,18 +26,15 @@
   margin: 40px 0 20px;
 }
 
-
 .cards-grid {
   display: grid;
   gap: 24px;         
   margin-bottom: 30px;
 }
 
-
 .five-columns {
   grid-template-columns: repeat(5, 200px);
 }
-
 
 .three-columns {
   grid-template-columns: repeat(3, 200px);
@@ -58,26 +52,26 @@
   display: flex;                
   flex-direction: column;
   justify-content: center;       
-  align-items: flex-start;       
+  align-items: flex-start;    /* ВЫРАВНИВАЕТ СОДЕРЖИМОЕ ВЛЕВО */
   transition: box-shadow 0.2s ease;
+  text-align: left;           /* Для страховки, чтобы все было по левому краю */
 }
-
 
 .card:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-
 
 .card-number {
   font-size: 36px;
   font-weight: 700;
   color: #212529;
   margin: 0 0 6px; 
+  text-align: left;          /* ВЫРАВНИВАЕТ ЧИСЛО ВЛЕВО */
 }
-
 
 .card-label {
   font-size: 14px;
   color: #6C757D;
   margin: 0;
+  text-align: left;          /* ВЫРАВНИВАЕТ ТЕКСТ ВЛЕВО */
 }
